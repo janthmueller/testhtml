@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placeholder Text Page</title>
+    <title>Dynamic Placeholder Text Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            background-color: #f4f4f4;
         }
         a {
-            color: blue;
+            color: #3498db;
             text-decoration: none;
+            transition: transform 0.3s;
         }
         a:hover {
             text-decoration: underline;
+            transform: translateY(-5px);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        p {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        p:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -30,6 +46,21 @@
 <p><a href="<insert-link-here>">This is a text</a> test lirum lipsum.</p>
 
 <p>Test <a href="<insert-link-here>">lirum lipsum</a> this is a text.</p>
+
+<script>
+    // Adding a simple mouse movement effect to paragraphs
+    document.querySelectorAll('p').forEach(p => {
+        p.addEventListener('mousemove', function(e) {
+            const xOffset = (e.pageX - this.offsetLeft) / this.clientWidth - 0.5;
+            const yOffset = (e.pageY - this.offsetTop) / this.clientHeight - 0.5;
+            this.style.transform = `scale(1.05) rotateX(${yOffset * 5}deg) rotateY(${xOffset * 5}deg)`;
+        });
+
+        p.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+    });
+</script>
 
 </body>
 </html>
